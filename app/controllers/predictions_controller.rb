@@ -3,9 +3,9 @@ class PredictionsController < ApplicationController
   before_filter :authenticate_user!
 
   def new
-    #fixture_service = FixtureService.new
-    #@fixtures = fixture_service.retrieve_future_fixtures
-    @fixtures = [{:kick_off=>"Saturday 14 September 2013 12:45:00", :home_team=>"Man Utd", :away_team=>"Crystal Palace"}, {:kick_off=>"Saturday 14 September 2013 15:00:00", :home_team=>"Aston Villa", :away_team=>"Newcastle"}, {:kick_off=>"Saturday 14 September 2013 15:00:00", :home_team=>"Fulham", :away_team=>"West Brom"}, {:kick_off=>"Saturday 14 September 2013 15:00:00", :home_team=>"Hull", :away_team=>"Cardiff"}, {:kick_off=>"Saturday 14 September 2013 15:00:00", :home_team=>"Tottenham", :away_team=>"Norwich"}, {:kick_off=>"Saturday 14 September 2013 15:00:00", :home_team=>"Stoke", :away_team=>"Man City"}, {:kick_off=>"Saturday 14 September 2013 15:00:00", :home_team=>"Sunderland", :away_team=>"Arsenal"}, {:kick_off=>"Saturday 14 September 2013 17:30:00", :home_team=>"Everton", :away_team=>"Chelsea"}, {:kick_off=>"Sunday 15 September 2013 16:00:00", :home_team=>"Southampton", :away_team=>"West Ham"}, {:kick_off=>"Monday 16 September 2013 20:00:00", :home_team=>"Swansea", :away_team=>"Liverpool"}]
+    fixture_service = FixtureService.new
+    @fixtures = fixture_service.retrieve_future_fixtures
+    #@fixtures = [{:kick_off=>"Saturday 14 September 2013 12:45:00", :home_team=>"Man Utd", :away_team=>"Crystal Palace"}, {:kick_off=>"Saturday 14 September 2013 15:00:00", :home_team=>"Aston Villa", :away_team=>"Newcastle"}, {:kick_off=>"Saturday 14 September 2013 15:00:00", :home_team=>"Fulham", :away_team=>"West Brom"}, {:kick_off=>"Saturday 14 September 2013 15:00:00", :home_team=>"Hull", :away_team=>"Cardiff"}, {:kick_off=>"Saturday 14 September 2013 15:00:00", :home_team=>"Tottenham", :away_team=>"Norwich"}, {:kick_off=>"Saturday 14 September 2013 15:00:00", :home_team=>"Stoke", :away_team=>"Man City"}, {:kick_off=>"Saturday 14 September 2013 15:00:00", :home_team=>"Sunderland", :away_team=>"Arsenal"}, {:kick_off=>"Saturday 14 September 2013 17:30:00", :home_team=>"Everton", :away_team=>"Chelsea"}, {:kick_off=>"Sunday 15 September 2013 16:00:00", :home_team=>"Southampton", :away_team=>"West Ham"}, {:kick_off=>"Monday 16 September 2013 20:00:00", :home_team=>"Swansea", :away_team=>"Liverpool"}]
     append_data_to_fixtures
 
     #Player.delete_all
@@ -90,7 +90,7 @@ class PredictionsController < ApplicationController
   def evaluate_predictions
     #puts '****************************************************************'
     result_available_after = 3
-    unchecked_predictions = @predictions.where("kick_off < ? AND prediction_status_id IS 0", Time.now + result_available_after.hours)
+    unchecked_predictions = @predictions.where("kick_off < ? AND prediction_status_id = 0", Time.now + result_available_after.hours)
     .order("kick_off ASC")
 
     if unchecked_predictions.length > 0
@@ -128,7 +128,6 @@ class PredictionsController < ApplicationController
   end
 
   def calculate_points correct_scoreline, correct_scorer
-    # will create status table with mappings 0=incorrect 1=correct scorer 2=correct scoreline 3=correct
     if correct_scoreline && correct_scorer
       points = 3
       status = 3
@@ -142,7 +141,7 @@ class PredictionsController < ApplicationController
           status = 1
         else
           points = 0
-          status = 0
+          status = 4
         end
       end
     end
