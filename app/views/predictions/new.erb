@@ -1,0 +1,83 @@
+<% if !@predictions.nil? %>
+<h1>Submit your prediction</h1>
+<%= form_for :prediction, html: {autocomplete: "off", :class=>'predictions_form'}, url: predictions_path do |f| %>
+    <h3>welcome <%=@display_name%></h3>
+    <ul class="prediction_list">
+    <% @fixtures.each_with_index do |fixture, index| %>
+        <li class="prediction">
+            <%= f.label "home_team_score_#{index}", fixture[:home_team], :class =>'home_team' %>
+            <%= f.select "home_team_score_#{index}", 0..10, {:selected => fixture[:home_team_score]} %>
+            <%= f.select "away_team_score_#{index}", 0..10, {:selected => fixture[:away_team_score]} %>
+            <%= f.label "away_team_score_#{index}", fixture[:away_team], :class =>'away_team' %>
+            <%= f.select "goal_scorer_#{index}", fixture[:players], {:selected => fixture[:goal_scorer,]}, { :class => 'goal_scorer' } %>
+            <%= f.hidden_field "home_team_#{index}", value:fixture[:home_team] %>
+            <%= f.hidden_field "away_team_#{index}", value:fixture[:away_team] %>
+            <%= f.hidden_field "kick_off_#{index}", value:fixture[:kick_off] %>
+            <%= f.hidden_field "prediction_id_#{index}", value:fixture[:prediction_id] %>
+        </li>
+    <% end %>
+    </ul>
+    <%= f.submit %>
+<% end %>
+<% end %>
+<br>
+<br>
+<% if !@standings.nil? %>
+    <table>
+        <thead>
+            <tr>
+                <th>Player</th>
+                <th>Points</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        <% @standings.each do |standing| %>
+            <tr>
+                <td><%= standing[:player] %></td>
+                <td><%= standing[:points] %></td>
+            </tr>
+        <% end %>
+        </tbody>
+
+    </table>
+
+<% end %>
+<br>
+<br>
+
+<% unless @predictions.empty? %>
+    <table class="datatable">
+        <thead>
+            <tr>
+                <th>Player</th>
+                <th>Fixture</th>
+                <th>Goal Scorer</th>
+                <th>status</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        <%	@predictions.each do |prediction| %>
+            <tr>
+                <td><%= prediction.user.email %></td>
+                <td><%= prediction.home_team %> <%= prediction.home_team_score%> - <%= prediction.away_team_score %> <%= prediction.away_team %></td>
+                <td><%= prediction.goal_scorer %></td>
+                <td><%= prediction.prediction_status.status %></td>
+            </tr>
+        <%	 end %>
+        </tbody>
+    </table>
+
+
+    <script type="text/javascript">
+    $('.datatable').dataTable({
+      "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+      "sPaginationType": "bootstrap"
+    });
+    </script>
+<% end %>
+
+
+

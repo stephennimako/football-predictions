@@ -1,0 +1,37 @@
+fixture
+fixture_id | home_team | away_team | kick_off
+
+1 Liverpool V Stoke
+	12:45
+
+
+2 Arsenal V Aston Villa
+	15:00
+
+
+3 Norwich V Everton
+	15:00
+
+
+4 Sunderland V Fulham
+	15:00
+
+
+5 West Brom V Southampton
+	15:00
+
+
+6 West Ham V Cardiff
+	15:00
+
+
+7 Swansea V Man Utd
+	17:30
+
+prediction
+prediction_id | fixture_id | home_team_score | away_team_score
+
+round
+round
+
+players

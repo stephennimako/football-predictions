@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  kick_off: 2013-07-27 12:53:36
+  home_team: MyString
+  away_team: MyString
+
+two:
+  kick_off: 2013-07-27 12:53:36
+  home_team: MyString
+  away_team: MyString

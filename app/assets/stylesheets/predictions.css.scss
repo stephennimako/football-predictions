@@ -1,0 +1,41 @@
+// Place all the styles related to the predictions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.predictions_form {
+  width:500px;
+
+  .prediction_list {
+
+    list-style-type: none;
+    margin-left: -37px;
+
+    .prediction {
+      line-height: 30px;
+
+      .home_team {
+        width:130px;
+        float: left;
+      }
+
+      .away_team {
+        margin-left: 20px;
+        //width:4px;
+        float: center;
+      }
+
+      .goal_scorer {
+        width: 130px;
+        float: right;
+
+      }
+
+    }
+  }
+}
+
+
+
+
+
+
