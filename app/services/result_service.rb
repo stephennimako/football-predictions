@@ -44,9 +44,9 @@ class ResultService
       end
       results[finder[:fixture_key]][:goal_scorers] = goal_scorers
     end
-    puts "***********************************"
-    p results
-    puts "***********************************"
+    #puts "***********************************"
+    #p results
+    #puts "***********************************"
     results
   end
 end

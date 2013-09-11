@@ -1,7 +1,7 @@
 <% if !@predictions.nil? %>
 <h1>Submit your prediction</h1>
 <%= form_for :prediction, html: {autocomplete: "off", :class=>'predictions_form'}, url: predictions_path do |f| %>
-    <h3>welcome <%=@display_name%></h3>
+    <h3>welcome!! <%=@display_name%></h3>
     <ul class="prediction_list">
     <% @fixtures.each_with_index do |fixture, index| %>
         <li class="prediction">

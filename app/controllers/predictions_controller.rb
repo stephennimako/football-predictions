@@ -3,9 +3,9 @@ class PredictionsController < ApplicationController
   before_filter :authenticate_user!
 
   def new
-    fixture_service = FixtureService.new
-    @fixtures = fixture_service.retrieve_future_fixtures
-    #@fixtures = [{:kick_off=>"Saturday 14 September 2013 12:45:00", :home_team=>"Man Utd", :away_team=>"Crystal Palace"}, {:kick_off=>"Saturday 14 September 2013 15:00:00", :home_team=>"Aston Villa", :away_team=>"Newcastle"}, {:kick_off=>"Saturday 14 September 2013 15:00:00", :home_team=>"Fulham", :away_team=>"West Brom"}, {:kick_off=>"Saturday 14 September 2013 15:00:00", :home_team=>"Hull", :away_team=>"Cardiff"}, {:kick_off=>"Saturday 14 September 2013 15:00:00", :home_team=>"Tottenham", :away_team=>"Norwich"}, {:kick_off=>"Saturday 14 September 2013 15:00:00", :home_team=>"Stoke", :away_team=>"Man City"}, {:kick_off=>"Saturday 14 September 2013 15:00:00", :home_team=>"Sunderland", :away_team=>"Arsenal"}, {:kick_off=>"Saturday 14 September 2013 17:30:00", :home_team=>"Everton", :away_team=>"Chelsea"}, {:kick_off=>"Sunday 15 September 2013 16:00:00", :home_team=>"Southampton", :away_team=>"West Ham"}, {:kick_off=>"Monday 16 September 2013 20:00:00", :home_team=>"Swansea", :away_team=>"Liverpool"}]
+    #fixture_service = FixtureService.new
+    #@fixtures = fixture_service.retrieve_future_fixtures
+    @fixtures = [{:kick_off=>"Saturday 14 September 2013 12:45:00", :home_team=>"Man Utd", :away_team=>"Crystal Palace"}, {:kick_off=>"Saturday 14 September 2013 15:00:00", :home_team=>"Aston Villa", :away_team=>"Newcastle"}, {:kick_off=>"Saturday 14 September 2013 15:00:00", :home_team=>"Fulham", :away_team=>"West Brom"}, {:kick_off=>"Saturday 14 September 2013 15:00:00", :home_team=>"Hull", :away_team=>"Cardiff"}, {:kick_off=>"Saturday 14 September 2013 15:00:00", :home_team=>"Tottenham", :away_team=>"Norwich"}, {:kick_off=>"Saturday 14 September 2013 15:00:00", :home_team=>"Stoke", :away_team=>"Man City"}, {:kick_off=>"Saturday 14 September 2013 15:00:00", :home_team=>"Sunderland", :away_team=>"Arsenal"}, {:kick_off=>"Saturday 14 September 2013 17:30:00", :home_team=>"Everton", :away_team=>"Chelsea"}, {:kick_off=>"Sunday 15 September 2013 16:00:00", :home_team=>"Southampton", :away_team=>"West Ham"}, {:kick_off=>"Monday 16 September 2013 20:00:00", :home_team=>"Swansea", :away_team=>"Liverpool"}]
     append_data_to_fixtures
 
     #Player.delete_all
