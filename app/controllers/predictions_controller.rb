@@ -18,7 +18,7 @@ class PredictionsController < ApplicationController
     #Prediction.delete_all
     #create_predictions
     @predictions = Prediction.includes(:user, :prediction_status)
-    evaluate_predictions
+    #evaluate_predictions
 
     @display_name = current_user.email
 
