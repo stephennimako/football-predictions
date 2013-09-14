@@ -22,7 +22,7 @@ $(document).ready(function(){
        }).done(function (predictions) {
                var error = false;
 
-               for (var index = 0; index < 7; index++) {
+               for (var index = 0; index < predictions.length; index++) {
                    if (!predictions[index].valid) {
                        error = true;
                        $('.prediction_list li:nth-child(' + (index+1) + ')').addClass('error')
