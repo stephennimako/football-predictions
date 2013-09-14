@@ -6,8 +6,6 @@ class ResultService
   require 'date'
 
   def retrieve_results oldest_fixture_date
-    #oldest_fixture_date = DateTime.parse('Sunday 31 August 2013 16:00:00:00')
-    #next_result_date = DateTime.parse('Sunday 01 September 2013 00:00:00:00')
     page = Nokogiri::HTML(RestClient.get("http://www.premierleague.com/en-gb/matchday/results.html?paramComp_8=true&view=.dateSeason"))
 
     results = {}
@@ -44,9 +42,6 @@ class ResultService
       end
       results[finder[:fixture_key]][:goal_scorers] = goal_scorers
     end
-    #puts "***********************************"
-    #p results
-    #puts "***********************************"
     results
   end
 end

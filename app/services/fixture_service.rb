@@ -5,7 +5,6 @@ class FixtureService
   require 'restclient'
   require 'date'
 
-
   def retrieve_future_fixtures
     page = Nokogiri::HTML(RestClient.get("http://www.premierleague.com/en-gb/matchday/matches.html?paramClubId=ALL&paramComp_8=true&view=.dateSeason"))
 
