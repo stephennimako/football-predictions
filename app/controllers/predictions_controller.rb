@@ -68,10 +68,10 @@ class PredictionsController < ApplicationController
       correct_predictions = Prediction.where(:prediction_status_id => 3, :user_id => user.id).count
       points = partial_predictions + (correct_predictions * 3)
       if [3, 5].include? user.id
-        points + 8
+        points = points + 8
       else
         if user.id == 4
-          points + 7
+          points = points + 7
         end
       end
       @standings << {:player => user.email, :points => points}
@@ -100,7 +100,7 @@ class PredictionsController < ApplicationController
 
   def evaluate_predictions
     #puts '****************************************************************'
-    result_available_after = 3
+    result_available_after = 2
     unchecked_predictions = @predictions.where("kick_off < ? AND prediction_status_id = 0", Time.now + result_available_after.hours)
     .order("kick_off ASC")
 
