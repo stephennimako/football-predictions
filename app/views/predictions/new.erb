@@ -28,8 +28,8 @@
     <table>
         <thead>
             <tr>
-                <th>Player</th>
-                <th>Points</th>
+                <th class="player">Player</th>
+                <th class="points">Points</th>
             </tr>
         </thead>
 
@@ -37,8 +37,8 @@
 
         <% @standings.each do |standing| %>
             <tr>
-                <td><%= standing[:player] %></td>
-                <td><%= standing[:points] %></td>
+                <td class="player"><%= standing[:player] %></td>
+                <td class="points"><%= standing[:points] %></td>
             </tr>
         <% end %>
         </tbody>
