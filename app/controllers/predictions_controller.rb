@@ -22,7 +22,7 @@ class PredictionsController < ApplicationController
 
     #populate_players
 
-    @predictions = Prediction.includes(:user, :prediction_status)
+    @predictions = Prediction.where("kick_off > ?", Date.today - 4.days).includes(:user, :prediction_status)
     evaluate_predictions if Rails.env == "production"
 
     @display_name = current_user.email
