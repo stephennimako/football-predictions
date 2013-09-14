@@ -1,10 +1,12 @@
 class PredictionsController < ApplicationController
 
+  require 'json'
+
   before_filter :authenticate_user!
 
   def new
     @selected_teams = ['West Ham', 'Chelsea', 'Arsenal', 'Man City', 'Man Utd', 'Liverpool', 'Tottenham']
-    if Rails.env == :production
+    if Rails.env == "production"
       fixture_service = FixtureService.new
       @fixtures = fixture_service.retrieve_future_fixtures
     else
@@ -18,21 +20,31 @@ class PredictionsController < ApplicationController
     #populate_players
 
     @predictions = Prediction.includes(:user, :prediction_status)
-    evaluate_predictions if Rails.env == :production
+    evaluate_predictions if Rails.env == "production"
 
     @display_name = current_user.email
     calculate_standings
   end
 
   def create
-    prediction_params.each do |params|
-      if !params[:id].blank?
-        Prediction.find(params[:id]).update(params)
-      else
-        Prediction.create(params)
+    if request.xhr?
+      predictions_json = JSON.parse request.body.read
+      predictions_json.each do |prediction|
+        count = Prediction.where(:home_team => prediction["home_team"], :away_team => prediction["away_team"]).where.not(:user_id => current_user.id).where("home_team_score = ? AND away_team_score = ? OR goal_scorer = ?", prediction["home_team_score"], prediction["away_team_score"], prediction["goal_scorer"]).count
+        prediction[:valid] = count == 0 ? true : false
       end
+
+      render :layout => false, :json=>predictions_json
+    else
+      prediction_params.each do |params|
+        if !params[:id].blank?
+          Prediction.find(params[:id]).update(params)
+        else
+          Prediction.create(params)
+        end
+      end
+      redirect_to '/'
     end
-    redirect_to '/'
   end
 
   private

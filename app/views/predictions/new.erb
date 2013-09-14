@@ -1,13 +1,15 @@
 <% if !@predictions.nil? %>
-<h1>Submit your prediction</h1>
-<%= form_for :prediction, html: {autocomplete: "off", :class=>'predictions_form'}, url: predictions_path do |f| %>
+    <h1>Submit your prediction</h1>
     <h3>welcome!! <%=@display_name%></h3>
+    <%= form_for :prediction, html: {autocomplete: "off", :class=>'predictions_form'}, url: predictions_path do |f| %>
+
+    <p class="error_message">The predictions for the fixtures highlighted in red are invalid as the goalscorer or scoreline has already been selected by another player. Please update and try to save again</p>
     <ul class="prediction_list">
     <% @fixtures.each_with_index do |fixture, index| %>
         <li class="prediction">
             <%= f.label "home_team_score_#{index}", fixture[:home_team], :class =>'home_team' %>
-            <%= f.select "home_team_score_#{index}", 0..10, {:selected => fixture[:home_team_score]} %>
-            <%= f.select "away_team_score_#{index}", 0..10, {:selected => fixture[:away_team_score]} %>
+            <%= f.select "home_team_score_#{index}", 0..10, {:selected => fixture[:home_team_score]}, { :class => 'home_team_score' } %>
+            <%= f.select "away_team_score_#{index}", 0..10, {:selected => fixture[:away_team_score]}, { :class => 'away_team_score' } %>
             <%= f.label "away_team_score_#{index}", fixture[:away_team], :class =>'away_team' %>
             <%= f.select "goal_scorer_#{index}", fixture[:players], {:selected => fixture[:goal_scorer,]}, { :class => 'goal_scorer' } %>
             <%= f.hidden_field "home_team_#{index}", value:fixture[:home_team] %>
@@ -17,7 +19,7 @@
         </li>
     <% end %>
     </ul>
-    <%= f.submit %>
+    <%= f.submit "save prediction", class:"submit_button"%>
 <% end %>
 <% end %>
 <br>

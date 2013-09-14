@@ -3,12 +3,21 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .predictions_form {
-  width:570px;
+  width:600px;
+
+  .error_message {
+    color: red;
+    display:none;
+  }
 
   .prediction_list {
 
     list-style-type: none;
     margin-left: -37px;
+
+    .error {
+      color: red;
+    }
 
     .prediction {
       line-height: 30px;
@@ -25,7 +34,7 @@
       }
 
       .goal_scorer {
-        width: 130px;
+        width: 150px;
         float: right;
 
       }
