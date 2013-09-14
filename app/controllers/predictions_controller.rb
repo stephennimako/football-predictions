@@ -18,7 +18,7 @@ class PredictionsController < ApplicationController
     #Prediction.delete_all
     #create_predictions
     @predictions = Prediction.includes(:user, :prediction_status)
-    #evaluate_predictions
+    evaluate_predictions
 
     @display_name = current_user.email
 
@@ -67,6 +67,13 @@ class PredictionsController < ApplicationController
       partial_predictions = Prediction.where(:prediction_status_id => [1, 2], :user_id => user.id).count
       correct_predictions = Prediction.where(:prediction_status_id => 3, :user_id => user.id).count
       points = partial_predictions + (correct_predictions * 3)
+      if [3, 5].include? user.id
+        points + 8
+      else
+        if user.id == 4
+          points + 7
+        end
+      end
       @standings << {:player => user.email, :points => points}
     end
   end
@@ -101,13 +108,13 @@ class PredictionsController < ApplicationController
       #puts "oldest prediction kick off #{unchecked_predictions.last.kick_off}"
       #puts "number of predictions #{unchecked_predictions.length}"
 
-      #results = ResultService.new.retrieve_results unchecked_predictions.last.kick_off
+      results = ResultService.new.retrieve_results unchecked_predictions.last.kick_off
 
-      results =
-          {:Arsenal_v_Tottenham => {:home_team_score => 1, :away_team_score => 0, :goal_scorers => ["Olivier Giroud"]},
-           :Liverpool_v_Man_Utd => {:home_team_score => 1, :away_team_score => 0, :goal_scorers => ["Daniel Sturridge"]},
-           :West_Brom_v_Swansea => {:home_team_score => 0, :away_team_score => 2, :goal_scorers => ["Ben Davies", "Pablo Hernandez"]}
-          }
+      #results =
+      #    {:Arsenal_v_Tottenham => {:home_team_score => 1, :away_team_score => 0, :goal_scorers => ["Olivier Giroud"]},
+      #     :Liverpool_v_Man_Utd => {:home_team_score => 1, :away_team_score => 0, :goal_scorers => ["Daniel Sturridge"]},
+      #     :West_Brom_v_Swansea => {:home_team_score => 0, :away_team_score => 2, :goal_scorers => ["Ben Davies", "Pablo Hernandez"]}
+      #    }
 
       unchecked_predictions.each do |prediction|
         results_key = (prediction.home_team + " v " + prediction.away_team).gsub!(" ", "_").to_sym
