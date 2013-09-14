@@ -67,15 +67,12 @@ class PredictionsController < ApplicationController
       partial_predictions = Prediction.where(:prediction_status_id => [1, 2], :user_id => user.id).count
       correct_predictions = Prediction.where(:prediction_status_id => 3, :user_id => user.id).count
       points = partial_predictions + (correct_predictions * 3)
-      if [3, 5].include? user.id
+      if [3,4,5].include? user.id
         points = points + 8
-      else
-        if user.id == 4
-          points = points + 7
-        end
       end
       @standings << {:player => user.email, :points => points}
     end
+    @standings.sort! { |x, y| x[:points] <=> y[:points] }.reverse!
   end
 
 
