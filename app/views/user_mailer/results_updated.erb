@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hello!!</h1>
+    <p>
+      Results have been updated<br/><br/><br/>
+    </p>
+
+    <p>The current standings are below:</p>
+    <% @standings.each do |standing| %>
+      <p><%=standing[:user]%> - <%=standing[:points]%></p>
+    <% end %>
+  </body>
+</html>

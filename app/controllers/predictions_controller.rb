@@ -24,10 +24,10 @@ class PredictionsController < ApplicationController
     #populate_players
 
     @predictions = Prediction.where("kick_off > ?", Date.today - 4.days).includes(:user, :prediction_status)
-    evaluate_predictions if Rails.env == "production"
+    evaluate_predictions @predictions if Rails.env == "production"
 
     @display_name = current_user.email
-    calculate_standings
+    @standings = calculate_standings
   end
 
   def create
@@ -55,7 +55,7 @@ class PredictionsController < ApplicationController
   private
 
   def calculate_standings
-    @standings = []
+    standings = []
     users_sorted_by_precedence.each_with_index do |user, index|
       partial_predictions = Prediction.where(:prediction_status_id => [1, 2], :user_id => user.id).count
       correct_predictions = Prediction.where(:prediction_status_id => 3, :user_id => user.id).count
@@ -67,9 +67,9 @@ class PredictionsController < ApplicationController
           points = points + 7
         end
       end
-      @standings << {:user => user.email, :points => points, :precedence => index + 1}
+      standings << {:user => user.email, :points => points, :precedence => index + 1}
     end
-    @standings.sort! { |x, y| x[:points] <=> y[:points] }.reverse!
+    standings.sort! { |x, y| x[:points] <=> y[:points] }.reverse!
   end
 
   def prediction_params
@@ -91,9 +91,9 @@ class PredictionsController < ApplicationController
     prediction_params
   end
 
-  def evaluate_predictions
+  def evaluate_predictions predictions
     result_available_after = 2
-    unchecked_predictions = @predictions.where("kick_off < ? AND prediction_status_id = 0", Time.now + result_available_after.hours)
+    unchecked_predictions = predictions.where("kick_off < ? AND prediction_status_id = 0", Time.now + result_available_after.hours)
     .order("kick_off ASC")
 
     if unchecked_predictions.length > 0
@@ -108,6 +108,7 @@ class PredictionsController < ApplicationController
           correct_scorer = result[:goal_scorers].include?(prediction.goal_scorer) || (result[:goal_scorers].empty? && prediction.goal_scorer == 'no scorer')
 
           prediction.update(calculate_points correct_scoreline, correct_scorer)
+          results_updated_email
         end
       end
     end
@@ -161,7 +162,12 @@ class PredictionsController < ApplicationController
 
   def prediction_made_email
     predictor = User.where(:id => current_user.id)[0]
-    UserMailer.prediction_made(users_sorted_by_precedence, predictor, users_sorted_by_precedence).deliver
+    sorted_users = sorted_users
+    UserMailer.prediction_made(sorted_users, predictor, sorted_users).deliver
+  end
+
+  def results_updated_email
+    UserMailer.results_updated(User.all, calculate_standings).deliver
   end
 
   def populate_players
