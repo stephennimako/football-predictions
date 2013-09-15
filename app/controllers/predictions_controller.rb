@@ -96,9 +96,9 @@ class PredictionsController < ApplicationController
     unchecked_predictions = predictions.where("kick_off < ? AND prediction_status_id = 0", Time.now + result_available_after.hours)
     .order("kick_off ASC")
 
-    updated_results = false
-    if unchecked_predictions.length > 0
 
+    if unchecked_predictions.length > 0
+      updated_results = false
       results = ResultService.new.retrieve_results unchecked_predictions.last.kick_off
 
       unchecked_predictions.each do |prediction|
