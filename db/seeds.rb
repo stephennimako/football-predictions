@@ -18,8 +18,13 @@
 
 
 #prod
-UserPrecedence.create([
-                            {:user_id => 3, :precedence => 1, :predicted_first => 1},
-                            {:user_id => 4, :precedence => 2, :predicted_first => 0},
-                            {:user_id => 5, :precedence => 3, :predicted_first => 0}
-                        ])
+#UserPrecedence.create([
+#                            {:user_id => 3, :precedence => 1, :predicted_first => 1},
+#                            {:user_id => 4, :precedence => 2, :predicted_first => 0},
+#                            {:user_id => 5, :precedence => 3, :predicted_first => 0}
+#                        ])
+
+
+User.where(:id => 1)[0].update(:name => 'Mo')
+User.where(:id => 2)[0].update(:name => 'Nels')
+User.where(:id => 3)[0].update(:name => 'Stephen')

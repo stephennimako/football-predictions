@@ -3,12 +3,12 @@ class UserMailer < ActionMailer::Base
 
   def prediction_made(mail_to, predictor, ordered_users)
     @ordered_users = ordered_users
-    @predictor_email = predictor.email
+    @predictor = predictor.name
     emails = []
     mail_to.each do |user|
       emails << user.email
     end
-    mail(to: emails, subject: "Prediction made by #{@predictor_email}")
+    mail(to: emails, subject: "Prediction made by #{@predictor}")
   end
 
   def results_updated(mail_to, standings)

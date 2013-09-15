@@ -6,12 +6,12 @@
   <body>
     <h1>Hello!!</h1>
     <p>
-      Predictions have been made by <%=@predictor_email%><br/><br/><br/>
+      Predictions have been made by <%=@predictor%><br/><br/><br/>
     </p>
 
     <p>The order for this round is:</p>
     <% @ordered_users.each do |user| %>
-      <p><%=user.email%></p>
+      <p><%=user.name%></p>
     <% end %>
   </body>
 </html>

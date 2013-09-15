@@ -26,7 +26,7 @@ class PredictionsController < ApplicationController
     @predictions = Prediction.where("kick_off > ?", Date.today - 4.days).includes(:user, :prediction_status)
     evaluate_predictions @predictions if Rails.env == "production"
 
-    @display_name = current_user.email
+    @display_name = current_user.name
     @standings = calculate_standings
   end
 
@@ -67,7 +67,7 @@ class PredictionsController < ApplicationController
           points = points + 7
         end
       end
-      standings << {:user => user.email, :points => points, :precedence => index + 1}
+      standings << {:user => user.name, :points => points, :precedence => index + 1}
     end
     standings.sort! { |x, y| x[:points] <=> y[:points] }.reverse!
   end
