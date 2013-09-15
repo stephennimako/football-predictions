@@ -161,8 +161,7 @@ class PredictionsController < ApplicationController
 
   def prediction_made_email
     predictor = User.where(:id => current_user.id)[0]
-    #UserMailer.prediction_made(users_sorted_by_precedence, predictor, users_sorted_by_precedence).deliver
-    UserMailer.prediction_made(User.where(:id => 1), predictor, users_sorted_by_precedence).deliver
+    UserMailer.prediction_made(users_sorted_by_precedence, predictor, users_sorted_by_precedence).deliver
   end
 
   def populate_players
