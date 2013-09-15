@@ -41,8 +41,6 @@ gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-ra
 gem 'nokogiri'
 gem 'rest-client'
 
-gem 'rails_on_heroku'
-
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
