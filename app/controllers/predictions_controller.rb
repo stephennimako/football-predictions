@@ -47,7 +47,7 @@ class PredictionsController < ApplicationController
           Prediction.create(params)
         end
       end
-      #prediction_made_email
+      prediction_made_email
       redirect_to '/'
     end
   end
