@@ -96,6 +96,7 @@ class PredictionsController < ApplicationController
     unchecked_predictions = predictions.where("kick_off < ? AND prediction_status_id = 0", Time.now + result_available_after.hours)
     .order("kick_off ASC")
 
+    updated_results = false
     if unchecked_predictions.length > 0
 
       results = ResultService.new.retrieve_results unchecked_predictions.last.kick_off
@@ -107,10 +108,12 @@ class PredictionsController < ApplicationController
           correct_scoreline = prediction.home_team_score == result[:home_team_score] && prediction.away_team_score == result[:away_team_score]
           correct_scorer = result[:goal_scorers].include?(prediction.goal_scorer) || (result[:goal_scorers].empty? && prediction.goal_scorer == 'no scorer')
 
+          updated_results = true
           prediction.update(calculate_points correct_scoreline, correct_scorer)
-          results_updated_email
+
         end
       end
+      results_updated_email if updated_results
     end
   end
 

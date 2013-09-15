@@ -25,6 +25,6 @@
 #                        ])
 
 
-User.where(:id => 1)[0].update(:name => 'Mo')
-User.where(:id => 2)[0].update(:name => 'Nels')
-User.where(:id => 3)[0].update(:name => 'Stephen')
+#User.where(:id => 3)[0].update(:name => 'Mo')
+#User.where(:id => 4)[0].update(:name => 'Nels')
+#User.where(:id => 5)[0].update(:name => 'Stephen')
