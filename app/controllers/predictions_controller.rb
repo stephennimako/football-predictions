@@ -16,6 +16,7 @@ class PredictionsController < ApplicationController
       @fixtures = @fixtures.select do |fixture|
         selected_teams.include?(fixture[:home_team]) || @selected_teams.include?(fixture[:away_team])
       end
+      update_user_precedence
     end
 
     append_data_to_fixtures
@@ -46,6 +47,7 @@ class PredictionsController < ApplicationController
           Prediction.create(params)
         end
       end
+      prediction_made_email
       redirect_to '/'
     end
   end
@@ -54,7 +56,7 @@ class PredictionsController < ApplicationController
 
   def calculate_standings
     @standings = []
-    User.all.each do |user|
+    users_sorted_by_precedence.each_with_index do |user, index|
       partial_predictions = Prediction.where(:prediction_status_id => [1, 2], :user_id => user.id).count
       correct_predictions = Prediction.where(:prediction_status_id => 3, :user_id => user.id).count
       points = partial_predictions + (correct_predictions * 3)
@@ -65,7 +67,7 @@ class PredictionsController < ApplicationController
           points = points + 7
         end
       end
-      @standings << {:player => user.email, :points => points}
+      @standings << {:user => user.email, :points => points, :precedence => index + 1}
     end
     @standings.sort! { |x, y| x[:points] <=> y[:points] }.reverse!
   end
@@ -141,6 +143,27 @@ class PredictionsController < ApplicationController
     fixtures
   end
 
+  def users_sorted_by_precedence
+    user_precedences = UserPrecedence.order(:predicted_first, :precedence)
+    users = []
+    user_precedences.each do |user_precedence|
+      users << user_precedence.user
+    end
+    users
+  end
+
+  def update_user_precedence
+    user_precedences = UserPrecedence.order(:predicted_first, :precedence)
+     if user_precedences.last.updated_at < DateTime.now - 2.days
+       user_precedences[0].update(:predicted_first => user_precedences[0].predicted_first + 1)
+     end
+  end
+
+  def prediction_made_email
+    predictor = User.where(:id => current_user.id)[0]
+    #UserMailer.prediction_made(users_sorted_by_precedence, predictor, users_sorted_by_precedence).deliver
+    UserMailer.prediction_made(User.where(:id => 1), predictor, users_sorted_by_precedence).deliver
+  end
 
   def populate_players
     players = PlayerService.new.retrieve_players

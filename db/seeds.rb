@@ -5,3 +5,21 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+# player 1 = mo, player 2 = nelseon player 3 = steve
+
+
+#dev
+#UserPrecedence.create([
+#                            {:user_id => 1, :precedence => 1, :predicted_first => 1},
+#                            {:user_id => 2, :precedence => 2, :predicted_first => 0},
+#                            {:user_id => 3, :precedence => 3, :predicted_first => 0}
+#                        ])
+
+
+#prod
+UserPrecedence.create([
+                            {:user_id => 3, :precedence => 1, :predicted_first => 1},
+                            {:user_id => 4, :precedence => 2, :predicted_first => 0},
+                            {:user_id => 5, :precedence => 3, :predicted_first => 0}
+                        ])

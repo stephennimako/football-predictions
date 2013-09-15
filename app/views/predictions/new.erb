@@ -28,8 +28,9 @@
     <table>
         <thead>
             <tr>
-                <th class="player">Player</th>
+                <th class="user">User</th>
                 <th class="points">Points</th>
+                <th class="prediction_order">Prediction Order</th>
             </tr>
         </thead>
 
@@ -37,8 +38,9 @@
 
         <% @standings.each do |standing| %>
             <tr>
-                <td class="player"><%= standing[:player] %></td>
+                <td class="user"><%= standing[:user] %></td>
                 <td class="points"><%= standing[:points] %></td>
+                <td class="prediction_order"><%= standing[:precedence] %></td>
             </tr>
         <% end %>
         </tbody>

@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  precedence: 1
+  predicted_first: 1
+
+two:
+  precedence: 1
+  predicted_first: 1

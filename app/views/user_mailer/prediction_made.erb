@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hello!!</h1>
+    <p>
+      Predictions have been made by <%@predictor_email%><br/>
+    </p>
+
+    <p>The order for this round is:</p>
+    <% @ordered_users.each do |user| %>
+      <p><%=user.email%></p>
+    <% end %>
+  </body>
+</html>
