@@ -14,7 +14,7 @@ class PredictionsController < ApplicationController
       fixture_service = FixtureService.new
       @fixtures = fixture_service.retrieve_future_fixtures
       @fixtures = @fixtures.select do |fixture|
-        selected_teams.include?(fixture[:home_team]) || @selected_teams.include?(fixture[:away_team])
+        selected_teams.include?(fixture[:home_team]) || selected_teams.include?(fixture[:away_team])
       end
       update_user_precedence
     end
