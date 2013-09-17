@@ -16,7 +16,6 @@ class PredictionsController < ApplicationController
       @fixtures = @fixtures.select do |fixture|
         selected_teams.include?(fixture[:home_team]) || selected_teams.include?(fixture[:away_team])
       end
-      update_user_precedence
     end
 
     append_data_to_fixtures
@@ -110,9 +109,9 @@ class PredictionsController < ApplicationController
 
           updated_results = true
           prediction.update(calculate_points correct_scoreline, correct_scorer)
-
         end
       end
+      update_user_precedence if Prediction.where(:prediction_status_id => 0).count  == 0 && updated_results
       results_updated_email if updated_results
     end
   end
@@ -158,7 +157,7 @@ class PredictionsController < ApplicationController
 
   def update_user_precedence
     user_precedences = UserPrecedence.order(:predicted_first, :precedence)
-     if user_precedences.last.updated_at < DateTime.now - 2.days
+     if user_precedences.last.updated_at < DateTime.now - 6.days
        user_precedences[0].update(:predicted_first => user_precedences[0].predicted_first + 1)
      end
   end
