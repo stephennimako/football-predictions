@@ -164,7 +164,7 @@ class PredictionsController < ApplicationController
 
   def prediction_made_email
     predictor = User.where(:id => current_user.id)[0]
-    sorted_users = sorted_users
+    sorted_users = users_sorted_by_precedence
     UserMailer.prediction_made(sorted_users, predictor, sorted_users).deliver
   end
 
