@@ -22,8 +22,8 @@ class PredictionsController < ApplicationController
 
     #populate_players
 
-    @predictions = Prediction.where("kick_off > ?", Date.today - 4.days).includes(:user, :prediction_status)
-    evaluate_predictions @predictions if Rails.env == "production"
+    @predictions = Prediction.where("kick_off > ?", Date.today - 3.days).includes(:user, :prediction_status)
+    evaluate_predictions @predictions
 
     @display_name = current_user.name
     @standings = calculate_standings
@@ -157,9 +157,9 @@ class PredictionsController < ApplicationController
 
   def update_user_precedence
     user_precedences = UserPrecedence.order(:predicted_first, :precedence)
-     if user_precedences.last.updated_at < DateTime.now - 6.days
-       user_precedences[0].update(:predicted_first => user_precedences[0].predicted_first + 1)
-     end
+    if user_precedences.last.updated_at < DateTime.now - 1.days
+      user_precedences[0].update(:predicted_first => user_precedences[0].predicted_first + 1)
+    end
   end
 
   def prediction_made_email
