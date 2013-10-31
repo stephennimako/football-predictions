@@ -24,7 +24,7 @@ class PlayerService
             {:team_link_name => 'stoke', :team_name => 'Stoke'},
             {:team_link_name => 'sunderland', :team_name => 'Sunderland'},
             {:team_link_name => 'swansea', :team_name => 'Swansea'},
-            {:team_link_name => 'tottenham', :team_name => 'Tottenham'},
+            {:team_link_name => 'tottenham', :team_name => 'Spurs'},
             {:team_link_name => 'west-brom', :team_name => 'West Brom'},
             {:team_link_name => 'west-ham', :team_name => 'West Ham'}
         ]
