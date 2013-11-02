@@ -8,20 +8,20 @@ class PredictionsController < ApplicationController
     selected_teams = ['West Ham', 'Chelsea', 'Arsenal', 'Man City', 'Man Utd', 'Liverpool', 'Spurs']
 
     not_started_predictions = Prediction.where(:prediction_status_id => 0)
-    #if not_started_predictions.length > 0
-    #  @fixtures = generate_predictions_from_fixtures not_started_predictions
-    #else
+    if not_started_predictions.length > 0
+      @fixtures = generate_predictions_from_fixtures not_started_predictions
+    else
       fixture_service = FixtureService.new
       @fixtures = fixture_service.retrieve_future_fixtures
       @fixtures = @fixtures.select do |fixture|
         selected_teams.include?(fixture[:home_team]) || selected_teams.include?(fixture[:away_team])
       end
-    #end
+    end
 
     #@fixtures = [{:kick_off => 'Sunday 19 October 2013 16:00:00', :home_team => 'West Ham', :away_team => 'Man City'}]
     append_data_to_fixtures
 
-    populate_players
+    #populate_players
 
     @predictions = Prediction.where("kick_off > ?", Date.today - 3.days).includes(:user, :prediction_status)
     evaluate_predictions @predictions
