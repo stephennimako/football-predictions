@@ -2,39 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3137f12e-ce47-4c1e-b4de-0032a2262b0f" name="Default" comment="styling fixtures with images and adding twitter bootstrap">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/badges/desktop/Arsenal.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/badges/desktop/Aston Villa.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/badges/desktop/Cardiff.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/badges/desktop/Chelsea.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/badges/desktop/Crystal Palace.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/badges/desktop/Everton.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/badges/desktop/Fulham.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/badges/desktop/Hull.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/badges/desktop/Liverpool.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/badges/desktop/Man City.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/badges/desktop/Man Utd.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/badges/desktop/Newcastle.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/badges/desktop/Norwich.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/badges/desktop/Southampton.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/badges/desktop/Spurs.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/badges/desktop/Stoke.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/badges/desktop/Sunderland.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/badges/desktop/Swansea.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/badges/desktop/West Brom.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/badges/desktop/West Ham.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap_and_overrides.css.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap_and_overrides.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/locales/en.bootstrap.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/application.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/application.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/predictions.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/predictions.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/predictions.css.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/predictions.css.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/predictions_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/predictions_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/predictions/new.erb" afterPath="$PROJECT_DIR$/app/views/predictions/new.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/football_predictions.iml" afterPath="$PROJECT_DIR$/football_predictions.iml" />
     </list>
     <ignored path="football_predictions.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -123,10 +92,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="predictions.css.scss" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="predictions.css.scss" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/predictions.css.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="17" selection-start="701" selection-end="701" vertical-scroll-proportion="0.0">
+            <state line="21" column="26" selection-start="415" selection-end="415" vertical-scroll-proportion="0.5039459">
               <folding />
             </state>
           </provider>
@@ -150,10 +119,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="predictions_controller.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="predictions_controller.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/predictions_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="0" selection-start="720" selection-end="720" vertical-scroll-proportion="0.5286041">
+            <state line="18" column="23" selection-start="691" selection-end="691" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -206,9 +175,9 @@
         <option value="$PROJECT_DIR$/app/assets/javascripts/predictions.js" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/predictions_old.css.scss" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-        <option value="$PROJECT_DIR$/app/assets/stylesheets/predictions.css.scss" />
         <option value="$PROJECT_DIR$/app/views/predictions/new.erb" />
         <option value="$PROJECT_DIR$/app/controllers/predictions_controller.rb" />
+        <option value="$PROJECT_DIR$/app/assets/stylesheets/predictions.css.scss" />
       </list>
     </option>
   </component>
@@ -1254,7 +1223,11 @@
       <created>1383356403931</created>
       <updated>1383356403932</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="styling fixtures with images and adding twitter bootstrap">
+      <created>1383865414362</created>
+      <updated>1383865414362</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1290,6 +1263,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32976446" sideWeight="0.4980631" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32976446" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32976446" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32982844" sideWeight="0.670354" order="6" side_tool="false" content_ui="tabs" />
@@ -1298,7 +1272,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32976446" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1341,7 +1314,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="removing populate players causing page load error" />
+    <option name="LAST_COMMIT_MESSAGE" value="styling fixtures with images and adding twitter bootstrap" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1354,7 +1327,6 @@
     <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="sorting table of standings" />
     <MESSAGE value="enabling retrieving fixtures and tidy up" />
     <MESSAGE value="fixed checking environment error. added validation so that same prediction cannot be made by multiple players" />
     <MESSAGE value="Updating standings with points" />
@@ -1379,6 +1351,7 @@
     <MESSAGE value="updating precedence" />
     <MESSAGE value="updating tottenham to spurs to match updated premierleague website and fix bug. temporarily removing retrieval of fixtures from predictions" />
     <MESSAGE value="removing populate players causing page load error" />
+    <MESSAGE value="styling fixtures with images and adding twitter bootstrap" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1454,13 +1427,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/predictions.css.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="17" selection-start="701" selection-end="701" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/predictions/new.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="48" column="0" selection-start="2396" selection-end="2396" vertical-scroll-proportion="-25.774193">
@@ -1470,7 +1436,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/predictions_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="0" selection-start="720" selection-end="720" vertical-scroll-proportion="0.5286041">
+        <state line="18" column="23" selection-start="691" selection-end="691" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/predictions.css.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="26" selection-start="415" selection-end="415" vertical-scroll-proportion="0.5039459">
           <folding />
         </state>
       </provider>
