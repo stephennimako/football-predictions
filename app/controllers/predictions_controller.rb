@@ -18,7 +18,11 @@ class PredictionsController < ApplicationController
       end
     end
 
-    #@fixtures = [{:kick_off => 'Sunday 19 October 2013 16:00:00', :home_team => 'West Ham', :away_team => 'Man City'}]
+    #Prediction.delete_all
+
+    #@fixtures = [{:kick_off => 'Sunday 19 October 2013 16:00:00', :home_team => 'West Ham', :away_team => 'Man City'},
+    #             {:kick_off => 'Sunday 19 October 2013 16:00:00', :home_team => 'Arsenal', :away_team => 'Liverpool'}
+    #]
     append_data_to_fixtures
 
     #populate_players

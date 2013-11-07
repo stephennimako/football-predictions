@@ -3,49 +3,45 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .predictions_form {
-  width:600px;
 
   .error_message {
     color: red;
-    display:none;
+    display: none;
   }
 
   .prediction_list {
-
     list-style-type: none;
-    margin-left: -37px;
+    margin-left: 0;
 
     .error {
       color: red;
     }
 
     .prediction {
-      line-height: 30px;
 
-      .home_team {
-        width:130px;
-        float: left;
+      margin-bottom: 16px;
+      margin-left: 0;
+      .home_team, .away_team {
+        width: 64px;
+        height: 64px;
+        margin: 0;
+        background-repeat: no-repeat;
+        display: inline-block;
+        vertical-align: middle;
       }
 
-      .away_team {
-        margin-left: 20px;
-        //width:4px;
-        float: center;
+      .home_team_score, .away_team_score {
+        width: 64px;
+        height: 64px;
+        margin-left: 0;
+        font-size: 48px;
+        vertical-align: middle;
       }
 
-      .goal_scorer {
-        width: 150px;
-        float: right;
-
+      goal_scorer {
+        display: block;
       }
-
     }
-  }
-}
-
-table {
-  .user {
-    width:290px;
   }
 }
 
