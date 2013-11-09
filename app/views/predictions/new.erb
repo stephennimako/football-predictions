@@ -9,7 +9,7 @@
     <ul class="prediction_list">
         <div class="row">
         <% @fixtures.each_with_index do |fixture, index| %>
-            <div class="span4">
+            <div class="span6">
                 <li class="prediction" data-home-team="<%=fixture[:home_team]%>" data-away-team="<%=fixture[:away_team]%>">
                     <div class="fixture">
                         <%= f.label '', :class =>'home_team', :style => "background-image: url('/images/badges/desktop/#{fixture[:home_team]}.png');" %>
