@@ -97,9 +97,8 @@ class PredictionsController < ApplicationController
 
   def evaluate_predictions predictions
     result_available_after = 2
-    unchecked_predictions = predictions.where("kick_off < ? AND prediction_status_id = 0", Time.now + result_available_after.hours)
+    unchecked_predictions = predictions.where("kick_off < ? AND prediction_status_id = 0", Time.now - result_available_after.hours)
     .order("kick_off ASC")
-
 
     if unchecked_predictions.length > 0
       updated_results = false

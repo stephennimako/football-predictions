@@ -6,7 +6,7 @@ development:
   pool: 5
   username: predictions
   password: password
-test:
+test: &test
   adapter: postgresql
   encoding: unicode
   database: predictions_test
@@ -22,3 +22,5 @@ production:
   pool: 5
   username: predictions
   password: password
+cucumber:
+  <<: *test
