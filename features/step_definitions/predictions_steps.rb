@@ -32,7 +32,7 @@ When /^the results for the fixtures are the following:$/ do |table|
       to_return(:body => response, :status => 200)
 
   table.hashes.each do |result|
-    result.each {|k,v| result[k] = v.split(',') if ['Home team scorers', 'Away team scorers'].include? k}
+    result.each { |k, v| result[k] = v.split(',') if ['Home team scorers', 'Away team scorers'].include? k }
     template = Tilt::ERBTemplate.new File.new 'features/responses/result_detailed_view.html.erb'
     response = template.render(nil, {:result => result})
     stub_request(:get, "http://www.premierleague.com/en-gb/matchday/matches/2013-2014/epl.match-preview.html/#{result['Home team'].gsub(' ', '-').downcase}-vs-#{result['Away team'].gsub(' ', '-').downcase}").
@@ -103,4 +103,21 @@ Then /^the table of standings should contain the following:$/ do |table|
     page.find(".user_standings tbody tr:nth-child(#{index + 1}) .prediction_order").text.should == standing['Order']
   end
 
+end
+Then /^the predictions form should contain the following predictions$/ do |table|
+  # table is a | Home team | Away team | Home team score | Away team score | Goal scorer  |
+  table.hashes.each_with_index do |prediction, index|
+     page.find(".predictions_form .prediction_list li:nth-child(#{index + 1}) .home_team_score").find('option[selected]').text.should == prediction['Home team score']
+     page.find(".predictions_form .prediction_list li:nth-child(#{index + 1}) .away_team_score").find('option[selected]').text.should == prediction['Away team score']
+     page.find(".predictions_form .prediction_list li:nth-child(#{index + 1}) .goal_scorer").find('option[selected]').text.should == prediction['Goal scorer']
+  end
+end
+When /^the users have the following precedence$/ do |table|
+  # table is a | user  | precedence | predicted_first |
+  table.hashes.each do |precedence|
+    UserPrecedence.where(:user_id => precedence['User id'])[0].update(:precedence => precedence['Precedence'],
+                                                                      :predicted_first => precedence['Predicted first'],
+                                                                      :updated_at => precedence['Updated at'])
+  end
+  p UserPrecedence.all
 end

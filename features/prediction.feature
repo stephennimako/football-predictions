@@ -36,11 +36,20 @@ Feature: A user is able to visit the predictions page to view the fixtures for t
       | user1  | Man Utd 3 - 4 Arsenal | Ryan Giggs  | Match Not Complete |
 
   @timecop
+  Scenario: The predictions form should be populated with the scores and scorers that the user has predicted
+    Given user 1 has predicted the following:
+      | Home team | Away team | Kick off                       | Home team score | Away team score | Goal scorer  |
+      | Man Utd   | Arsenal   | Saturday 9 November 2013 15:00 | 3               | 4               | Wayne Rooney |
+    And the current date is Saturday 9 November 2013 12:00
+    When user 1 signs in and visits the predictions page
+    Then the predictions form should contain the following predictions
+      | Home team | Away team | Home team score | Away team score | Goal scorer  |
+      | Man Utd   | Arsenal   | 3               | 4               | Wayne Rooney |
+
+
+  @timecop
   Scenario: The user should be able to view the predictions made by other players
-    Given the fixtures for the coming weeks are as follows:
-      | Date                     | Time  | Home team | Away team |
-      | Saturday 9 November 2013 | 15:00 | Man Utd   | Arsenal   |
-    And user 2 has predicted the following:
+    Given user 2 has predicted the following:
       | Home team | Away team | Kick off                       | Home team score | Away team score | Goal scorer  |
       | Man Utd   | Arsenal   | Saturday 9 November 2013 15:00 | 1               | 0               | Wayne Rooney |
     And the current date is Saturday 9 November 2013 12:00
@@ -228,7 +237,69 @@ Feature: A user is able to visit the predictions page to view the fixtures for t
       | player | Result                | Goal scorer  | Status             |
       | user1  | Man Utd 1 - 1 Arsenal | Wayne Rooney | Match Not Complete |
 
+  @timecop
+  Scenario: The users prediction should have a status match not complete if at least 2 hours have passed since kick off
+  but the results for the match have not been published yet
+    Given user 1 has predicted the following:
+      | Home team | Away team | Kick off                       | Home team score | Away team score | Goal scorer  |
+      | Man Utd   | Arsenal   | Saturday 9 November 2013 15:00 | 1               | 1               | Wayne Rooney |
+    And the current date is Saturday 9 November 2013 17:00
+    And the results for the fixtures are the following:
+      | Home team | Away team | Date                     | Time  | Home team score | Away team score | Home team scorers | Away team scorers |
+      | Spurs     | Chelsea   | Saturday 9 November 2013 | 12:45 | 0               | 0               |                   |                   |
+    When user 1 signs in and visits the predictions page
+    Then the table of predictions should contain the following predictions
+      | player | Result                | Goal scorer  | Status             |
+      | user1  | Man Utd 1 - 1 Arsenal | Wayne Rooney | Match Not Complete |
 
+  Scenario: The user should be first to pick if he has a lower precedence and has not predicted first on more occasions
+  then the other player
+    Given the fixtures for the coming weeks are as follows:
+      | Date                     | Time  | Home team | Away team |
+      | Saturday 9 November 2013 | 15:00 | Man Utd   | Arsenal   |
+    And the users have the following precedence
+      | User id | Precedence | Predicted first | Updated at                     |
+      | 1       | 1          | 0               | Saturday 2 November 2013 17:00 |
+      | 2       | 2          | 0               | Saturday 2 November 2013 17:00 |
+    When user 1 signs in and visits the predictions page
+    Then the table of standings should contain the following:
+      | User  | Points | Order |
+      | user2 | 0      | 2     |
+      | user1 | 0      | 1     |
+
+  Scenario: The user should be second to pick if he has a lower precedence but has predicted first on more occasions
+  then the other player
+    Given the fixtures for the coming weeks are as follows:
+      | Date                     | Time  | Home team | Away team |
+      | Saturday 9 November 2013 | 15:00 | Man Utd   | Arsenal   |
+    And the users have the following precedence
+      | User id | Precedence | Predicted first | Updated at                     |
+      | 1       | 1          | 1               | Saturday 2 November 2013 17:00 |
+      | 2       | 2          | 0               | Saturday 2 November 2013 17:00 |
+    When user 1 signs in and visits the predictions page
+    Then the table of standings should contain the following:
+      | User  | Points | Order |
+      | user1 | 0      | 2     |
+      | user2 | 0      | 1     |
+
+  @timecop
+  Scenario: The user who is first to pick should be second to pick after all results have been updated
+    Given user 1 has predicted the following:
+      | Home team | Away team | Kick off                       | Home team score | Away team score | Goal scorer  |
+      | Man Utd   | Arsenal   | Saturday 9 November 2013 15:00 | 1               | 1               | Wayne Rooney |
+    And the users have the following precedence
+      | User id | Precedence | Predicted first | Updated at                     |
+      | 1       | 1          | 0               | Saturday 2 November 2013 17:00 |
+      | 2       | 2          | 0               | Saturday 2 November 2013 17:00 |
+    And the current date is Saturday 9 November 2013 17:00
+    And the results for the fixtures are the following:
+      | Home team | Away team | Date                     | Time  | Home team score | Away team score | Home team scorers | Away team scorers |
+      | Man Utd   | Arsenal   | Saturday 9 November 2013 | 15:00 | 0               | 0               |                   |                   |
+    When user 1 signs in and visits the predictions page
+    Then the table of standings should contain the following:
+      | User  | Points | Order |
+      | user1 | 0      | 2     |
+      | user2 | 0      | 1     |
 
 
 
