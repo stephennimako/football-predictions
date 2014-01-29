@@ -38,7 +38,7 @@ class PredictionsController < ApplicationController
     if request.xhr?
       predictions_json = JSON.parse request.body.read
       predictions_json.each do |prediction|
-        count = Prediction.where(:home_team => prediction["home_team"], :away_team => prediction["away_team"]).where.not(:user_id => current_user.id).where("home_team_score = ? AND away_team_score = ? OR goal_scorer = ?", prediction["home_team_score"], prediction["away_team_score"], prediction["goal_scorer"]).count
+        count = Prediction.where(:home_team => prediction["home_team"], :away_team => prediction["away_team"]).where.not(:user_id => current_user.id).where("home_team_score = ? AND away_team_score = ? AND goal_scorer = ?", prediction["home_team_score"], prediction["away_team_score"], prediction["goal_scorer"]).count
         prediction[:valid] = count == 0 ? true : false
       end
 
