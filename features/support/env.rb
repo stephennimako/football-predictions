@@ -62,10 +62,12 @@ Cucumber::Rails::Database.javascript_strategy = :truncation, {:except => %w[play
 
 PredictionStatus.create([{:id => 0, :status => 'Match Not Complete'}, {:id => 1, :status => 'Correct Scorer'},
                          {:id => 2, :status => 'Correct Scoreline'}, {:id => 3, :status => 'Correct Prediction'},
-                         {:id => 4, :status => 'Incorrect Prediction'},])
+                         {:id => 4, :status => 'Incorrect Prediction'}, {:id => 5, :status => 'Correct Bonus Prediction'},
+                         {:id => 6, :status => 'Correct Scoreline + 1 Scorer'}, {:id => 7, :status => 'Both Scorers Correct'}])
 
 Player.create([{:id => '1', :name => 'Wayne Rooney', :team => 'Man Utd'},
-               {:id => '2', :name => 'Ryan Giggs', :team => 'Man Utd'}])
+               {:id => '2', :name => 'Ryan Giggs', :team => 'Man Utd'},
+               {:id => '3', :name => 'Jack Wilshere', :team => 'Arsenal'}])
 
 
 User.create(:id => 1, :email => 'user1@test.com', :password => 'test1234', :password_confirmation => 'test1234', :name => 'user1')

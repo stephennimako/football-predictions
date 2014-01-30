@@ -9,6 +9,7 @@ $(document).ready(function(){
            prediction.home_team_score = parseInt($(this).find('.home_team_score option:selected').text());
            prediction.away_team_score = parseInt($(this).find('.away_team_score option:selected').text());
            prediction.goal_scorer = $(this).find('.goal_scorer option:selected').text();
+           prediction.additional_goal_scorer = $(this).find('.additional_goal_scorer option:selected').text();
 
            predictions.push(prediction);
        });

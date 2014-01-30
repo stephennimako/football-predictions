@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130915162123) do
+ActiveRecord::Schema.define(version: 20140130210444) do
 
   create_table "players", force: true do |t|
     t.string   "name"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20130915162123) do
     t.integer  "points"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "additional_goal_scorer"
   end
 
   create_table "user_precedences", force: true do |t|

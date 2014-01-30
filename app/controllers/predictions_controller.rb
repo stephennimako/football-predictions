@@ -4,17 +4,19 @@ class PredictionsController < ApplicationController
 
   before_filter :authenticate_user!
 
+  helper_method :bonus_fixture
+
   def new
-    selected_teams = ['West Ham', 'Chelsea', 'Arsenal', 'Man City', 'Man Utd', 'Liverpool', 'Spurs']
+    @selected_teams = ['West Ham', 'Chelsea', 'Arsenal', 'Man City', 'Man Utd', 'Liverpool', 'Spurs']
 
     not_started_predictions = Prediction.where(:prediction_status_id => 0)
     if not_started_predictions.length > 0
-      @fixtures = generate_predictions_from_fixtures not_started_predictions
+      @fixtures = generate_fixtures_from_predictions not_started_predictions
     else
       fixture_service = FixtureService.new
       @fixtures = fixture_service.retrieve_future_fixtures
       @fixtures = @fixtures.select do |fixture|
-        selected_teams.include?(fixture[:home_team]) || selected_teams.include?(fixture[:away_team])
+        @selected_teams.include?(fixture[:home_team]) || @selected_teams.include?(fixture[:away_team])
       end
     end
 
@@ -37,12 +39,18 @@ class PredictionsController < ApplicationController
   def create
     if request.xhr?
       predictions_json = JSON.parse request.body.read
+
       predictions_json.each do |prediction|
-        count = Prediction.where(:home_team => prediction["home_team"], :away_team => prediction["away_team"]).where.not(:user_id => current_user.id).where("home_team_score = ? AND away_team_score = ? AND goal_scorer = ?", prediction["home_team_score"], prediction["away_team_score"], prediction["goal_scorer"]).count
-        prediction[:valid] = count == 0 ? true : false
+        @count = 0
+        if prediction["additional_goal_scorer"] == ''
+          @count = Prediction.where(:home_team => prediction["home_team"], :away_team => prediction["away_team"]).where.not(:user_id => current_user.id).where("home_team_score = ? AND away_team_score = ? AND goal_scorer = ?", prediction["home_team_score"], prediction["away_team_score"], prediction["goal_scorer"]).count
+        else
+          @count = Prediction.where(:home_team => prediction["home_team"], :away_team => prediction["away_team"]).where.not(:user_id => current_user.id).where("home_team_score = ? AND away_team_score = ? AND goal_scorer = ? AND additional_goal_scorer = ?", prediction["home_team_score"], prediction["away_team_score"], prediction["goal_scorer"], prediction["additional_goal_scorer"]).count
+        end
+        prediction[:valid] = @count == 0 ? true : false
       end
 
-      render :layout => false, :json=>predictions_json
+      render :layout => false, :json => predictions_json
     else
       prediction_params.each do |params|
         if !params[:id].blank?
@@ -56,6 +64,10 @@ class PredictionsController < ApplicationController
     end
   end
 
+  def bonus_fixture home_team, away_team
+    @selected_teams.include?(home_team) && @selected_teams.include?(away_team)
+  end
+
   private
 
   def calculate_standings
@@ -63,8 +75,10 @@ class PredictionsController < ApplicationController
     users_sorted_by_precedence.each_with_index do |user, index|
       partial_predictions = Prediction.where(:prediction_status_id => [1, 2], :user_id => user.id).count
       correct_predictions = Prediction.where(:prediction_status_id => 3, :user_id => user.id).count
-      points = partial_predictions + (correct_predictions * 3)
-      if [4,5].include? user.id
+      correct_bonus_predictions = Prediction.where(:prediction_status_id => 5, :user_id => user.id).count
+      partial_bonus_predictions = Prediction.where(:prediction_status_id => [6, 7], :user_id => user.id).count
+      points = partial_predictions + (correct_predictions * 3) + (partial_bonus_predictions * 3) + (correct_bonus_predictions * 5)
+      if [4, 5].include? user.id
         points = points + 8
       else
         if user.id == 3
@@ -86,6 +100,7 @@ class PredictionsController < ApplicationController
                             :home_team_score => params[:prediction]["home_team_score_#{count}"].to_i,
                             :away_team_score => params[:prediction]["away_team_score_#{count}"].to_i,
                             :goal_scorer => params[:prediction]["goal_scorer_#{count}"],
+                            :additional_goal_scorer => params[:prediction]["additional_goal_scorer_#{count}"],
                             :kick_off => DateTime.parse(params[:prediction]["kick_off_#{count}"]),
                             :id => params[:prediction]["prediction_id_#{count}"],
                             :user_id => current_user.id,
@@ -97,8 +112,7 @@ class PredictionsController < ApplicationController
 
   def evaluate_predictions predictions
     result_available_after = 2
-    unchecked_predictions = predictions.where("kick_off < ? AND prediction_status_id = 0", Time.now - result_available_after.hours)
-    .order("kick_off ASC")
+    unchecked_predictions = predictions.where("kick_off < ? AND prediction_status_id = 0", Time.now - result_available_after.hours).order("kick_off ASC")
 
     if unchecked_predictions.length > 0
       updated_results = false
@@ -110,12 +124,16 @@ class PredictionsController < ApplicationController
         if !result.nil?
           correct_scoreline = prediction.home_team_score == result[:home_team_score] && prediction.away_team_score == result[:away_team_score]
           correct_scorer = result[:goal_scorers].include?(prediction.goal_scorer) || (result[:goal_scorers].empty? && prediction.goal_scorer == 'no scorer')
-
+          if bonus_fixture prediction.home_team, prediction.away_team
+            correct_additional_scorer = result[:goal_scorers].include?(prediction.additional_goal_scorer) || (result[:goal_scorers].empty? && prediction.additional_goal_scorer == 'no scorer')
+            prediction.update(calculate_bonus_points(correct_scoreline, correct_scorer, correct_additional_scorer))
+          else
+            prediction.update(calculate_points(correct_scoreline, correct_scorer))
+          end
           updated_results = true
-          prediction.update(calculate_points correct_scoreline, correct_scorer)
         end
       end
-      update_user_precedence if Prediction.where(:prediction_status_id => 0).count  == 0 && updated_results
+      update_user_precedence if Prediction.where(:prediction_status_id => 0).count == 0 && updated_results
       results_updated_email if updated_results
     end
   end
@@ -141,7 +159,30 @@ class PredictionsController < ApplicationController
     {:points => points, :prediction_status_id => status}
   end
 
-  def generate_predictions_from_fixtures predictions
+  def calculate_bonus_points correct_scoreline, correct_scorer, correct_additional_scorer
+    if correct_scoreline && correct_scorer && correct_additional_scorer
+      points = 5
+      status = 5
+    elsif correct_scoreline && (correct_scorer || correct_additional_scorer)
+      points = 3
+      status = 6
+    elsif correct_scorer && correct_additional_scorer
+      points = 3
+      status = 7
+    elsif correct_scoreline
+      points = 1
+      status = 2
+    elsif correct_scorer
+      points = 1
+      status = 1
+    else
+      points = 0
+      status = 4
+    end
+    {:points => points, :prediction_status_id => status}
+  end
+
+  def generate_fixtures_from_predictions predictions
     fixtures = []
     predictions.each do |prediction|
       fixture = {:kick_off => prediction.kick_off, :home_team => prediction.home_team, :away_team => prediction.away_team}
@@ -200,11 +241,12 @@ class PredictionsController < ApplicationController
     end
 
     fixture[:goal_scorer] = prediction.nil? ? 'no scorer' : prediction.goal_scorer
+    fixture[:additional_goal_scorer] = prediction.nil? ? 'no scorer' : prediction.additional_goal_scorer
   end
 
   def append_players_to_fixtures fixture
     players = fixture[:players] = ['no scorer']
-    Player.all.where(:team => [ fixture[:home_team], fixture[:away_team] ]).each do |player|
+    Player.all.where(:team => [fixture[:home_team], fixture[:away_team]]).each do |player|
       players << player.name
     end
   end

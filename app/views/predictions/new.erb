@@ -17,7 +17,12 @@
                         <%= f.select "away_team_score_#{index}", 0..9, {:selected => fixture[:away_team_score]}, { :class => 'away_team_score' } %>
                         <%= f.label '', :class =>'away_team', :style => "background-image: url('/images/badges/desktop/#{fixture[:away_team]}.png');"  %>
                     </div>
-                    <%= f.select "goal_scorer_#{index}", fixture[:players], {:selected => fixture[:goal_scorer,]}, { :class => 'goal_scorer' } %>
+                    <%	if bonus_fixture(fixture[:home_team], fixture[:away_team])  %>
+                        <%= f.select "goal_scorer_#{index}", fixture[:players], {:selected => fixture[:goal_scorer]}, { :class => 'goal_scorer' } %>
+                        <%= f.select "additional_goal_scorer_#{index}", fixture[:players], {:selected => fixture[:additional_goal_scorer]}, { :class => 'additional_goal_scorer' } %>
+                    <% else %>
+                        <%= f.select "goal_scorer_#{index}", fixture[:players], {:selected => fixture[:goal_scorer]}, { :class => 'goal_scorer' } %>
+                    <% end %>
 
                     <%= f.hidden_field "home_team_#{index}", value:fixture[:home_team] %>
                     <%= f.hidden_field "away_team_#{index}", value:fixture[:away_team] %>
@@ -66,7 +71,8 @@
             <tr>
                 <th>Player</th>
                 <th>Fixture</th>
-                <th>Goal Scorer</th>
+                <th>Scorer</th>
+                <th>Additional Scorer</th>
                 <th>status</th>
             </tr>
         </thead>
@@ -77,6 +83,7 @@
                 <td class="name"><%= prediction.user.name %></td>
                 <td class="fixture"><%= prediction.home_team %> <%= prediction.home_team_score%> - <%= prediction.away_team_score %> <%= prediction.away_team %></td>
                 <td class="goal_scorer"><%= prediction.goal_scorer %></td>
+                <td class="additional_goal_scorer"><%= prediction.additional_goal_scorer %></td>
                 <td class="status"><%= prediction.prediction_status.status %></td>
             </tr>
         <%	 end %>

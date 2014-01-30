@@ -58,8 +58,8 @@ Given /^user (\d+) has predicted the following:$/ do |user_id, table|
 
     Prediction.create(:home_team => prediction['Home team'], :away_team => prediction['Away team'],
                       :home_team_score => prediction['Home team score'], :away_team_score => prediction['Away team score'],
-                      :goal_scorer => prediction['Goal scorer'], :kick_off => DateTime.parse(prediction['Kick off']),
-                      :user_id => user_id, :prediction_status_id => 0)
+                      :goal_scorer => prediction['Goal scorer'], :additional_goal_scorer => prediction['Additional Goal scorer'],
+                      :kick_off => DateTime.parse(prediction['Kick off']), :user_id => user_id, :prediction_status_id => 0)
   end
 
 end
@@ -70,7 +70,8 @@ When /^the predictions form is filled with the following:$/ do |table|
     fixture_element = page.find(".prediction[data-home-team='#{prediction['Home team']}']")
     fixture_element.find(".home_team_score option[value='#{prediction['Home team score']}']").select_option
     fixture_element.find(".away_team_score option[value='#{prediction['Away team score']}']").select_option
-    fixture_element.find("option[value='#{prediction['Goal scorer']}']").select_option
+    fixture_element.find(".goal_scorer option[value='#{prediction['Goal scorer']}']").select_option
+    fixture_element.find(".additional_goal_scorer option[value='#{prediction['Additional Goal scorer']}']").select_option if prediction['Additional Goal scorer']
   end
 end
 
@@ -88,6 +89,7 @@ Then /^the table of predictions should contain the following predictions$/ do |t
     page.find(".prediction_table tbody tr:nth-child(#{index + 1}) .name").text.should == prediction['player']
     page.find(".prediction_table tbody tr:nth-child(#{index + 1}) .fixture").text.should == prediction['Result']
     page.find(".prediction_table tbody tr:nth-child(#{index + 1}) .goal_scorer").text.should == prediction['Goal scorer']
+    page.find(".prediction_table tbody tr:nth-child(#{index + 1}) .additional_goal_scorer").text.should == prediction['Additional Goal scorer'] if prediction['Additional Goal scorer']
     page.find(".prediction_table tbody tr:nth-child(#{index + 1}) .status").text.should == prediction['Status']
   end
 end
@@ -110,6 +112,7 @@ Then /^the predictions form should contain the following predictions$/ do |table
      page.find(".predictions_form .prediction_list li:nth-child(#{index + 1}) .home_team_score").find('option[selected]').text.should == prediction['Home team score']
      page.find(".predictions_form .prediction_list li:nth-child(#{index + 1}) .away_team_score").find('option[selected]').text.should == prediction['Away team score']
      page.find(".predictions_form .prediction_list li:nth-child(#{index + 1}) .goal_scorer").find('option[selected]').text.should == prediction['Goal scorer']
+     page.find(".predictions_form .prediction_list li:nth-child(#{index + 1}) .additional_goal_scorer").find('option[selected]').text.should == prediction['Additional Goal scorer'] if prediction['Additional Goal scorer']
   end
 end
 When /^the users have the following precedence$/ do |table|
@@ -119,5 +122,4 @@ When /^the users have the following precedence$/ do |table|
                                                                       :predicted_first => precedence['Predicted first'],
                                                                       :updated_at => precedence['Updated at'])
   end
-  p UserPrecedence.all
 end
