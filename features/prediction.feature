@@ -111,7 +111,6 @@ Feature: A user is able to visit the predictions page to view the fixtures for t
       | user1  | Man Utd 3 - 4 Sunderland | Wayne Rooney | Match Not Complete |
       | user2  | Man Utd 1 - 0 Sunderland | Wayne Rooney | Match Not Complete |
 
-    @wip
   @timecop
   Scenario: The user should be presented with the invalid prediction error as the scoreline and goal scorer have been selected by another player
     Given the fixtures for the coming weeks are as follows:
@@ -203,6 +202,24 @@ Feature: A user is able to visit the predictions page to view the fixtures for t
     Then the table of predictions should contain the following predictions
       | player | Result                | Goal scorer  | Additional Goal scorer | Status                   |
       | user1  | Man Utd 1 - 1 Arsenal | Wayne Rooney | Jack Wilshere          | Correct Bonus Prediction |
+    Then the table of standings should contain the following:
+      | User  | Points | Order |
+      | user1 | 5      | 1     |
+
+  @timecop
+  Scenario: The user should be awarded 5 points and the status of their bonus prediction should be updated to correct
+  prediction when they have predicted the correct scoreline and scorer for home and no scorer for away team
+    Given user 1 has predicted the following:
+      | Home team | Away team | Kick off                       | Home team score | Away team score | Goal scorer  | Additional Goal scorer |
+      | Man Utd   | Arsenal   | Saturday 9 November 2013 15:00 | 1               | 0               | Wayne Rooney | no scorer              |
+    And the current date is Saturday 9 November 2013 17:00
+    And the results for the fixtures are the following:
+      | Home team | Away team | Date                     | Time  | Home team score | Away team score | Home team scorers | Away team scorers |
+      | Man Utd   | Arsenal   | Saturday 9 November 2013 | 15:00 | 1               | 0               | Wayne Rooney      |                   |
+    When user 1 signs in and visits the predictions page
+    Then the table of predictions should contain the following predictions
+      | player | Result                | Goal scorer  | Additional Goal scorer | Status                   |
+      | user1  | Man Utd 1 - 0 Arsenal | Wayne Rooney | no scorer              | Correct Bonus Prediction |
     Then the table of standings should contain the following:
       | User  | Points | Order |
       | user1 | 5      | 1     |

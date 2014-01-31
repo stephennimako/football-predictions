@@ -116,11 +116,14 @@ class PredictionsController < ApplicationController
         result = results[results_key]
         if !result.nil?
           correct_scoreline = prediction.home_team_score == result[:home_team_score] && prediction.away_team_score == result[:away_team_score]
-          correct_scorer = result[:goal_scorers].include?(prediction.goal_scorer) || (result[:goal_scorers].empty? && prediction.goal_scorer == 'no scorer')
+
           if bonus_fixture prediction.home_team, prediction.away_team
-            correct_additional_scorer = result[:goal_scorers].include?(prediction.additional_goal_scorer) || (result[:goal_scorers].empty? && prediction.additional_goal_scorer == 'no scorer')
+            correct_scorer = result[:home_goal_scorers].include?(prediction.goal_scorer) || (result[:home_goal_scorers].empty? && prediction.goal_scorer == 'no scorer')
+            correct_additional_scorer = result[:away_goal_scorers].include?(prediction.additional_goal_scorer) || (result[:away_goal_scorers].empty? && prediction.additional_goal_scorer == 'no scorer')
             prediction.update(calculate_bonus_points(correct_scoreline, correct_scorer, correct_additional_scorer))
           else
+            scorer = "#{selected_team_location(prediction.home_team)}_goal_scorers".to_sym
+            correct_scorer = result[scorer].include?(prediction.goal_scorer) || (result[scorer].empty? && prediction.goal_scorer == 'no scorer')
             prediction.update(calculate_points(correct_scoreline, correct_scorer))
           end
           updated_results = true
@@ -129,6 +132,10 @@ class PredictionsController < ApplicationController
       update_user_precedence if Prediction.where(:prediction_status_id => 0).count == 0 && updated_results
       results_updated_email if updated_results
     end
+  end
+
+  def selected_team_location home_team
+    (@selected_teams.include?(home_team)) ? 'home' : 'away'
   end
 
   def calculate_points correct_scoreline, correct_scorer

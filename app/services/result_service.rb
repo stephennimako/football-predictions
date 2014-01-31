@@ -35,13 +35,18 @@ class ResultService
 
     match_report_finder.each do |finder|
       page = Nokogiri::HTML(RestClient.get("http://www.premierleague.com#{finder[:link]}"))
-      goal_scorers = []
-      page.css('.fixtureheader .goals li').each do |scorer_element|
-        scorer_text = scorer_element.text
-        goal_scorers << scorer_text.scan(/(.*)\(.*/)[0][0].strip unless scorer_text.include?('og)')
-      end
-      results[finder[:fixture_key]][:goal_scorers] = goal_scorers
+      results[finder[:fixture_key]][:home_goal_scorers] = extract_goal_scorers(page, 'home')
+      results[finder[:fixture_key]][:away_goal_scorers] = extract_goal_scorers(page, 'away')
     end
     results
+  end
+
+  def extract_goal_scorers(page, type)
+    goal_scorers = []
+    page.css(".fixtureheader .goals.#{type} li").each do |scorer_element|
+      scorer_text = scorer_element.text
+      goal_scorers << scorer_text.scan(/(.*)\(.*/)[0][0].strip unless scorer_text.include?('og)')
+    end
+    goal_scorers
   end
 end
