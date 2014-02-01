@@ -122,8 +122,8 @@ class PredictionsController < ApplicationController
             correct_additional_scorer = result[:away_goal_scorers].include?(prediction.additional_goal_scorer) || (result[:away_goal_scorers].empty? && prediction.additional_goal_scorer == 'no scorer')
             prediction.update(calculate_bonus_points(correct_scoreline, correct_scorer, correct_additional_scorer))
           else
-            scorer = "#{selected_team_location(prediction.home_team)}_goal_scorers".to_sym
-            correct_scorer = result[scorer].include?(prediction.goal_scorer) || (result[scorer].empty? && prediction.goal_scorer == 'no scorer')
+            goal_scorers = result[:home_goal_scorers] + result[:away_goal_scorers]
+            correct_scorer = goal_scorers.include?(prediction.goal_scorer) || (goal_scorers.empty? && prediction.goal_scorer == 'no scorer')
             prediction.update(calculate_points(correct_scoreline, correct_scorer))
           end
           updated_results = true
@@ -132,10 +132,6 @@ class PredictionsController < ApplicationController
       update_user_precedence if Prediction.where(:prediction_status_id => 0).count == 0 && updated_results
       results_updated_email if updated_results
     end
-  end
-
-  def selected_team_location home_team
-    (@selected_teams.include?(home_team)) ? 'home' : 'away'
   end
 
   def calculate_points correct_scoreline, correct_scorer
@@ -245,9 +241,19 @@ class PredictionsController < ApplicationController
   end
 
   def append_players_to_fixtures fixture
-    players = fixture[:players] = ['no scorer']
-    Player.all.where(:team => [fixture[:home_team], fixture[:away_team]]).each do |player|
+    if bonus_fixture fixture[:home_team], fixture[:away_team]
+      fixture[:players] =  goal_scorers_for_team(fixture[:home_team])
+      fixture[:additional_players] =  goal_scorers_for_team(fixture[:away_team])
+    else
+      fixture[:players] =  goal_scorers_for_team([fixture[:home_team], fixture[:away_team]])
+    end
+  end
+
+  def goal_scorers_for_team(teams)
+    players = ['no scorer']
+    Player.all.where(:team => teams).each do |player|
       players << player.name
     end
+    players
   end
 end

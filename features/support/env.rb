@@ -67,7 +67,8 @@ PredictionStatus.create([{:id => 0, :status => 'Match Not Complete'}, {:id => 1,
 
 Player.create([{:id => '1', :name => 'Wayne Rooney', :team => 'Man Utd'},
                {:id => '2', :name => 'Ryan Giggs', :team => 'Man Utd'},
-               {:id => '3', :name => 'Jack Wilshere', :team => 'Arsenal'}])
+               {:id => '3', :name => 'Adam Johnson', :team => 'Sunderland'},
+               {:id => '4', :name => 'Jack Wilshere', :team => 'Arsenal'}])
 
 
 User.create(:id => 1, :email => 'user1@test.com', :password => 'test1234', :password_confirmation => 'test1234', :name => 'user1')

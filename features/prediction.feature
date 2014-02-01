@@ -21,6 +21,27 @@ Feature: A user is able to visit the predictions page to view the fixtures for t
       | Norwich   | Man City  |
 
   @timecop
+  Scenario: The user should be able to select players from both teams as goalscorer
+    Given the fixtures for the coming weeks are as follows:
+      | Date                     | Time  | Home team | Away team  |
+      | Saturday 9 November 2013 | 15:00 | Man Utd   | Sunderland |
+    And the current date is Saturday 9 November 2013 12:00
+    When user 1 signs in and visits the predictions page
+    Then the goal scorers list should contain players from both teams
+
+  @timecop
+  Scenario: The user should be able to select players from home team only as goalscorer and players from away team only as
+  additional scorer for bonus game
+    Given the fixtures for the coming weeks are as follows:
+      | Date                     | Time  | Home team | Away team |
+      | Saturday 9 November 2013 | 15:00 | Man Utd   | Arsenal   |
+    And the current date is Saturday 9 November 2013 12:00
+    When user 1 signs in and visits the predictions page
+    Then the goal scorers list should contain players from the home team
+    And the additional goal scorers list should contain players from the away team
+
+
+  @timecop
   Scenario: The user should be able to submit a prediction for the fixtures displayed
     Given the fixtures for the coming weeks are as follows:
       | Date                     | Time  | Home team | Away team  |
@@ -391,7 +412,7 @@ Feature: A user is able to visit the predictions page to view the fixtures for t
 
   @timecop
   Scenario: The user should be awarded 1 point and the status of their prediction should be updated to correct scorer
-  when they have predicted the correct scorer but incorrect scoreline
+  when they have predicted the correct scorer from home team but incorrect scoreline
     Given user 1 has predicted the following:
       | Home team | Away team  | Kick off                       | Home team score | Away team score | Goal scorer  |
       | Man Utd   | Sunderland | Saturday 9 November 2013 15:00 | 1               | 1               | Wayne Rooney |
@@ -403,6 +424,24 @@ Feature: A user is able to visit the predictions page to view the fixtures for t
     Then the table of predictions should contain the following predictions
       | player | Result                   | Goal scorer  | Status         |
       | user1  | Man Utd 1 - 1 Sunderland | Wayne Rooney | Correct Scorer |
+    Then the table of standings should contain the following:
+      | User  | Points | Order |
+      | user1 | 1      | 1     |
+
+  @timecop
+  Scenario: The user should be awarded 1 point and the status of their prediction should be updated to correct scorer
+  when they have predicted the correct scorer from away team but incorrect scoreline
+    Given user 1 has predicted the following:
+      | Home team | Away team  | Kick off                       | Home team score | Away team score | Goal scorer  |
+      | Man Utd   | Sunderland | Saturday 9 November 2013 15:00 | 1               | 1               | Adam Johnson |
+    And the current date is Saturday 9 November 2013 17:00
+    And the results for the fixtures are the following:
+      | Home team | Away team  | Date                     | Time  | Home team score | Away team score | Home team scorers | Away team scorers |
+      | Man Utd   | Sunderland | Saturday 9 November 2013 | 15:00 | 1               | 2               | Wayne Rooney      | Adam Johnson      |
+    When user 1 signs in and visits the predictions page
+    Then the table of predictions should contain the following predictions
+      | player | Result                   | Goal scorer  | Status         |
+      | user1  | Man Utd 1 - 1 Sunderland | Adam Johnson | Correct Scorer |
     Then the table of standings should contain the following:
       | User  | Points | Order |
       | user1 | 1      | 1     |

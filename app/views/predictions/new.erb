@@ -19,7 +19,7 @@
                     </div>
                     <%	if bonus_fixture(fixture[:home_team], fixture[:away_team])  %>
                         <%= f.select "goal_scorer_#{index}", fixture[:players], {:selected => fixture[:goal_scorer]}, { :class => 'goal_scorer' } %>
-                        <%= f.select "additional_goal_scorer_#{index}", fixture[:players], {:selected => fixture[:additional_goal_scorer]}, { :class => 'additional_goal_scorer' } %>
+                        <%= f.select "additional_goal_scorer_#{index}", fixture[:additional_players], {:selected => fixture[:additional_goal_scorer]}, { :class => 'additional_goal_scorer' } %>
                     <% else %>
                         <%= f.select "goal_scorer_#{index}", fixture[:players], {:selected => fixture[:goal_scorer]}, { :class => 'goal_scorer' } %>
                     <% end %>

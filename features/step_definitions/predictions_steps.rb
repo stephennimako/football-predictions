@@ -123,3 +123,26 @@ When /^the users have the following precedence$/ do |table|
                                                                       :updated_at => precedence['Updated at'])
   end
 end
+
+Then /^the goal scorers list should contain players from both teams$/ do
+  scorers_elements = page.all('.prediction .goal_scorer option')
+  scorers_elements.size.should == 4
+  scorers_elements[0].text.should == 'no scorer'
+  scorers_elements[1].text.should == 'Wayne Rooney'
+  scorers_elements[2].text.should == 'Ryan Giggs'
+  scorers_elements[3].text.should == 'Adam Johnson'
+end
+Then /^the goal scorers list should contain players from the home team$/ do
+  scorers_elements = page.all('.prediction .goal_scorer option')
+    scorers_elements.size.should == 3
+    scorers_elements[0].text.should == 'no scorer'
+    scorers_elements[1].text.should == 'Wayne Rooney'
+    scorers_elements[2].text.should == 'Ryan Giggs'
+end
+
+When /^the additional goal scorers list should contain players from the away team$/ do
+  scorers_elements = page.all('.prediction .additional_goal_scorer option')
+    scorers_elements.size.should == 2
+    scorers_elements[0].text.should == 'no scorer'
+    scorers_elements[1].text.should == 'Jack Wilshere'
+end
