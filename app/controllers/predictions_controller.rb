@@ -171,7 +171,7 @@ class PredictionsController < ApplicationController
     elsif correct_scoreline
       points = 1
       status = 2
-    elsif correct_scorer
+    elsif correct_scorer || correct_additional_scorer
       points = 1
       status = 1
     else
