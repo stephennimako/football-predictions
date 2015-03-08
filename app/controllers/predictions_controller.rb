@@ -104,16 +104,24 @@ class PredictionsController < ApplicationController
   end
 
   def evaluate_predictions predictions
+    puts '*****************************************************'
+    puts 'in evaluate predictions'
+
     result_available_after = 2
     unchecked_predictions = predictions.where("kick_off < ? AND prediction_status_id = 0", Time.now - result_available_after.hours).order("kick_off ASC")
 
     if unchecked_predictions.length > 0
+      puts 'in unchecked predictions'
       updated_results = false
       results = ResultService.new.retrieve_results unchecked_predictions.last.kick_off
+      puts "results are :#{results}"
+      puts "unchecked predictions count :#{unchecked_predictions.length}"
 
       unchecked_predictions.each do |prediction|
         results_key = (prediction.home_team + " v " + prediction.away_team).gsub!(" ", "_").to_sym
+        put "results key is #{results_key}"
         result = results[results_key]
+        put "result is #{result}"
         if !result.nil?
           correct_scoreline = prediction.home_team_score == result[:home_team_score] && prediction.away_team_score == result[:away_team_score]
 
