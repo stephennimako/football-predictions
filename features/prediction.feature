@@ -9,16 +9,16 @@ Feature: A user is able to visit the predictions page to view the fixtures for t
       | Saturday 9 November 2013  | 15:00 | Man Utd        | Arsenal    |
       | Saturday 9 November 2013  | 15:00 | Aston Villa    | Cardiff    |
       | Saturday 9 November 2013  | 15:00 | Crystal Palace | Fulham     |
-      | Sunday 10 November 2013   | 13:00 | Norwich        | Man City   |
-      | Sunday 10 November 2013   | 16:00 | Southampton    | Sunderland |
+      | Sunday 10 November 2013   | 13:00 | Southampton    | Man City   |
+      | Sunday 10 November 2013   | 16:00 | Norwich        | Sunderland |
       | Saturday 16 November 2013 | 15:00 | Man City       | Spurs      |
       | Saturday 16 November 2013 | 15:00 | Southampton    | Chelsea    |
     And the current date is Saturday 9 November 2013 12:00
     When user 1 signs in and visits the predictions page
     Then the following fixtures should be available for predictions:
-      | Home team | Away team |
-      | Man Utd   | Arsenal   |
-      | Norwich   | Man City  |
+      | Home team   | Away team |
+      | Man Utd     | Arsenal   |
+      | Southampton | Man City  |
 
   @timecop
   Scenario: The user should be able to select players from both teams as goalscorer
