@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3137f12e-ce47-4c1e-b4de-0032a2262b0f" name="Default" comment="added new teams to players  service">
+    <list default="true" id="3137f12e-ce47-4c1e-b4de-0032a2262b0f" name="Default" comment="revert from using capybara">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/result_service.rb" afterPath="$PROJECT_DIR$/app/services/result_service.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/prediction.feature" afterPath="$PROJECT_DIR$/features/prediction.feature" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/football_predictions.iml" afterPath="$PROJECT_DIR$/football_predictions.iml" />
     </list>
     <ignored path="football_predictions.iws" />
@@ -86,64 +85,59 @@
       <file leaf-file-name="prediction.feature" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/features/prediction.feature">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="459" column="123" selection-start="33193" selection-end="33193" vertical-scroll-proportion="0.0">
+            <state line="459" column="123" selection-start="33199" selection-end="33199" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="QPR.png" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="QPR.png" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/images/badges/desktop/QPR.png">
           <provider selected="true" editor-type-id="images">
             <state />
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="new.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/predictions/new.erb">
+      <file leaf-file-name="restclient.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/.rvm/gems/ruby-1.9.3-p0/gems/rest-client-1.6.7/lib/restclient.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="140" selection-start="878" selection-end="897" vertical-scroll-proportion="0.0">
+            <state line="66" column="11" selection-start="2524" selection-end="2524" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Leicester.png" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/images/badges/desktop/Leicester.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Burnley.png" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/images/badges/desktop/Burnley.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="player_service.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/services/player_service.rb">
+      <file leaf-file-name="Gemfile" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Gemfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="10" selection-start="2099" selection-end="2099" vertical-scroll-proportion="0.0">
+            <state line="47" column="17" selection-start="1209" selection-end="1209" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="predictions_controller.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/predictions_controller.rb">
+      <file leaf-file-name="test.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="47" selection-start="546" selection-end="546" vertical-scroll-proportion="0.0">
+            <state line="2695" column="10" selection-start="143713" selection-end="143713" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fixture_service.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/services/fixture_service.rb">
+      <file leaf-file-name="test.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/environments/test.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="13" selection-start="100" selection-end="100" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="13" selection-start="104" selection-end="104" vertical-scroll-proportion="0.16687268">
               <folding />
             </state>
           </provider>
@@ -165,22 +159,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/features/responses/result_detailed_view.html.erb" />
-        <option value="$PROJECT_DIR$/features/responses/results.html.erb" />
-        <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/config/newrelic.yml" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/predictions.css.scss" />
         <option value="$PROJECT_DIR$/db/migrate/20140129220855_add_additional_goal_scorer_to_predictions.rb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/predictions.js" />
         <option value="$PROJECT_DIR$/db/migrate/20140130210444_update_prediction_status_with_bonus_values.rb" />
-        <option value="$PROJECT_DIR$/app/services/result_service.rb" />
         <option value="$PROJECT_DIR$/features/support/env.rb" />
-        <option value="$PROJECT_DIR$/test.rb" />
         <option value="$PROJECT_DIR$/app/views/predictions/new.erb" />
-        <option value="$PROJECT_DIR$/features/prediction.feature" />
         <option value="$PROJECT_DIR$/features/step_definitions/predictions_steps.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/predictions_controller.rb" />
         <option value="$PROJECT_DIR$/app/services/player_service.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/predictions_controller.rb" />
+        <option value="$PROJECT_DIR$/features/prediction.feature" />
+        <option value="$PROJECT_DIR$/features/responses/results.html.erb" />
+        <option value="$PROJECT_DIR$/test.html" />
+        <option value="$PROJECT_DIR$/Gemfile" />
+        <option value="$PROJECT_DIR$/app/services/result_service.rb" />
+        <option value="$PROJECT_DIR$/test.rb" />
       </list>
     </option>
   </component>
@@ -244,15 +238,15 @@
     <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+    <navigator proportions="" version="1" splitterProportion="0.5">
       <flattenPackages />
       <showMembers />
       <showModules />
       <showLibraryContents />
       <hideEmptyPackages />
       <abbreviatePackageNames />
-      <autoscrollToSource ProjectPane="false" />
-      <autoscrollFromSource ProjectPane="true" />
+      <autoscrollToSource ProjectPane="true" />
+      <autoscrollFromSource ProjectPane="false" />
       <sortByType />
     </navigator>
     <panes>
@@ -409,8 +403,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -535,7 +529,9 @@
       </EXTENSION>
       <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="$PROJECT_DIR$/test.rb" />
       <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="" />
+      <RunnerSettings RunnerId="RubyDebugRunner" />
       <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="RubyDebugRunner" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
@@ -1290,7 +1286,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="added new teams to players  service" />
+    <option name="LAST_COMMIT_MESSAGE" value="revert from using capybara" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1303,7 +1299,6 @@
     <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="fixing bug in sending email" />
     <MESSAGE value="updating precedence" />
     <MESSAGE value="updating tottenham to spurs to match updated premierleague website and fix bug. temporarily removing retrieval of fixtures from predictions" />
     <MESSAGE value="removing populate players causing page load error" />
@@ -1328,23 +1323,38 @@
     <MESSAGE value="updated team badges" />
     <MESSAGE value="removed default points increases" />
     <MESSAGE value="added new teams to players  service" />
+    <MESSAGE value="revert from using capybara" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/app/services/result_service.rb</url>
+          <line>29</line>
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/app/services/result_service.rb</url>
+          <line>59</line>
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-1.9.3-p0/gems/rest-client-1.6.7/lib/restclient.rb">
+    <entry file="file://$PROJECT_DIR$/features/responses/results.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="11" selection-start="2524" selection-end="2524" vertical-scroll-proportion="0.0">
+        <state line="2672" column="10" selection-start="129581" selection-end="129581" vertical-scroll-proportion="-18.25">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="17" selection-start="1209" selection-end="1209" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="2695" column="10" selection-start="143713" selection-end="143713" vertical-scroll-proportion="-3.25" />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.rvm/rubies/ruby-1.9.3-p0/lib/ruby/1.9.1/forwardable.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="459" column="123" selection-start="33193" selection-end="33193" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/services/result_service.rb">
@@ -1354,7 +1364,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.html">
+    <entry file="file://$PROJECT_DIR$/app/services/fixture_service.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="9" selection-start="114" selection-end="114" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/predictions_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="58" selection-start="532" selection-end="557" vertical-scroll-proportion="0.0">
           <folding />
@@ -1363,14 +1380,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="0" selection-start="1019" selection-end="1019" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="13" selection-start="147" selection-end="147" vertical-scroll-proportion="0.25092936">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/images/badges/desktop/Arsenal.png">
@@ -1385,45 +1395,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/features/prediction.feature">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="459" column="123" selection-start="33193" selection-end="33193" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/predictions/new.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="140" selection-start="878" selection-end="897" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/images/badges/desktop/Leicester.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/images/badges/desktop/Burnley.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/player_service.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="10" selection-start="2099" selection-end="2099" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/predictions_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="47" selection-start="546" selection-end="546" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/fixture_service.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="13" selection-start="100" selection-end="100" vertical-scroll-proportion="0.0">
+        <state line="459" column="123" selection-start="33199" selection-end="33199" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1431,6 +1403,41 @@
     <entry file="file://$PROJECT_DIR$/public/images/badges/desktop/QPR.png">
       <provider selected="true" editor-type-id="images">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-1.9.3-p0/gems/rest-client-1.6.7/lib/restclient.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="66" column="11" selection-start="2524" selection-end="2524" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="17" selection-start="1209" selection-end="1209" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2695" column="10" selection-start="143713" selection-end="143713" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/environments/test.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="13" selection-start="104" selection-end="104" vertical-scroll-proportion="0.16687268">
+          <folding />
+        </state>
       </provider>
     </entry>
   </component>
