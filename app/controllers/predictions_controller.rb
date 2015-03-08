@@ -119,9 +119,9 @@ class PredictionsController < ApplicationController
 
       unchecked_predictions.each do |prediction|
         results_key = (prediction.home_team + " v " + prediction.away_team).gsub!(" ", "_").to_sym
-        put "results key is #{results_key}"
+        puts "results key is #{results_key}"
         result = results[results_key]
-        put "result is #{result}"
+        puts "result is #{result}"
         if !result.nil?
           correct_scoreline = prediction.home_team_score == result[:home_team_score] && prediction.away_team_score == result[:away_team_score]
 
