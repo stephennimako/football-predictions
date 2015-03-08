@@ -37,12 +37,10 @@ class ResultService
         score_split = score_link.text.split(' - ')
         home_team_score = score_split[0].to_i
         away_team_score = score_split[1].to_i
-        home_team = result.all('.rHome a')[0].text
-        away_team = result.all('.rAway a')[0].text
-        fixture_key = (home_team + " v " + away_team).gsub!(" ", "_").to_sym
-        results[fixture_key] =
+        fixture = fixture_key(result.all('.rHome a')[0].text, result.all('.rAway a')[0].text)
+        results[fixture] =
             {:home_team_score => home_team_score, :away_team_score => away_team_score}
-        match_report_finder << {:link => score_link[:href], :fixture_key => fixture_key}
+        match_report_finder << {:link => score_link[:href], :fixture_key => fixture}
       end
     end
 
@@ -62,5 +60,29 @@ class ResultService
       goal_scorers << scorer_text.scan(/(.*)\(.*/)[0][0].strip unless scorer_text.include?('og)')
     end
     goal_scorers
+  end
+
+  def fixture_key home_team, away_team
+    team_mappings ={'Arsenal' => 'Arsenal',
+                    'Aston Villa' => 'Aston Villa',
+                    'Burnley' => 'Burnley',
+                    'Chelsea' => 'Chelsea',
+                    'Crystal Palace' => 'Crystal Palace',
+                    'Everton' => 'Everton',
+                    'Hull City' => 'Hull',
+                    'Leicester City' => 'Leicester',
+                    'Liverpool' => 'Liverpool',
+                    'Manchester City' => 'Man City',
+                    'Manchester United' => 'Man Utd',
+                    'Newcastle United' => 'Newcastle',
+                    'Queens Park Rangers' => 'QPR',
+                    'Southampton' => 'Southampton',
+                    'Sunderland' => 'Sunderland',
+                    'Stoke City' => 'Stoke',
+                    'Tottenham Hotspur' => 'Spurs',
+                    'Swansea City' => 'Swansea',
+                    'West Bromwich Albion' => 'West Brom',
+                    'West Ham United' => 'West Ham'}
+    (team_mappings[home_team] + " v " + team_mappings[away_team]).gsub!(" ", "_").to_sym
   end
 end
