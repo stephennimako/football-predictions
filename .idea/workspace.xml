@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3137f12e-ce47-4c1e-b4de-0032a2262b0f" name="Default" comment="revert from using capybara">
+    <list default="true" id="3137f12e-ce47-4c1e-b4de-0032a2262b0f" name="Default" comment="added new teams to players  service">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
@@ -110,7 +110,7 @@
       <file leaf-file-name="Gemfile" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Gemfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="17" selection-start="1209" selection-end="1209" vertical-scroll-proportion="0.0">
+            <state line="47" column="17" selection-start="1208" selection-end="1208" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -137,7 +137,7 @@
       <file leaf-file-name="test.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="13" selection-start="104" selection-end="104" vertical-scroll-proportion="0.16687268">
+            <state line="5" column="61" selection-start="104" selection-end="104" vertical-scroll-proportion="0.16687268">
               <folding />
             </state>
           </provider>
@@ -403,8 +403,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -1414,7 +1414,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="17" selection-start="1209" selection-end="1209" vertical-scroll-proportion="0.0">
+        <state line="47" column="17" selection-start="1208" selection-end="1208" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1435,7 +1435,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="13" selection-start="104" selection-end="104" vertical-scroll-proportion="0.16687268">
+        <state line="5" column="61" selection-start="104" selection-end="104" vertical-scroll-proportion="0.16687268">
           <folding />
         </state>
       </provider>
