@@ -19,6 +19,7 @@ class ResultService
   include Capybara::DSL
 
   def retrieve_results oldest_fixture_date
+    puts '********************************retrieving results'
     visit("http://www.premierleague.com/en-gb/matchday/results.html?paramComp_8=true&view=.dateSeason")
 
     results = {}
